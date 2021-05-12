@@ -1,0 +1,313 @@
+//Write a Scala program to create a list in different ways.
+object Scala_List
+{
+  def main(args: Array[String]): Unit =
+  {
+    println("Create a Scala List:")
+    println("Lisp style:")
+    val lisp_list = 100 :: 200 :: 300 :: Nil :: 400 :: Nil
+    println(lisp_list)
+    println("Java style:")
+    val nums = List(1,2,3,4,5,6,7)
+    println(nums)
+    println("Mixed type values in a list:")
+    val x = List[Number](100, 200, 110.20, 45d, 0x1)
+    println(x)
+    println("Range List:")
+    val y = List.range(1, 20)
+    println(y)
+    val z = List.range(0, 30, 3)
+    println(z)
+    println("Uniform  List:")
+    val s = List.fill(5)("Scala")
+    println(s)
+    val n = List.fill(3)(4)
+    println(n)
+    println("Tabulate List:")
+    val t = List.tabulate(10)(n => n * n * n)
+    println(t)
+  }
+}
+
+//Write a Scala program to add single element and multiple elements to a given listbuffer/list.
+object Scala_List1
+{
+  import scala.collection.mutable.ListBuffer
+  def main(args: Array[String]): Unit =
+  {
+    //As a List is immutable we use ListBuffer
+    var colors = new ListBuffer[String]()
+    println("Add Single element in the said list:")
+    colors += "Red"
+    colors += "Green"
+    colors += "Black"
+    println(colors)
+    println("Add multiple elements in the said list:")
+    colors ++= List("Orange", "Pink", "Black")
+    println(colors)
+    println("Convert the ListBuffer to a List:")
+    val colors_list = colors.toList
+    println(colors_list)
+  }
+}
+
+//Write a Scala program to remove single and multiple elements from a given listbuffer/list.
+object List3
+{
+  import scala.collection.mutable.ListBuffer
+  def main(args: Array[String]): Unit =
+  {
+  var colors = new ListBuffer[String]()
+    colors += "Red"
+    colors += "Green"
+    colors += "kala"
+    println(colors)
+    colors -= "kala"
+    colors += "safed"
+    println(colors)
+
+    val list_1 = colors.toList
+    println(list_1)
+  }
+}
+
+//Write a Scala program to delete element(s) from a given List.
+object Scala_List4 {
+  def main(args: Array[String]): Unit = {
+    val nums = List(1, 3, 5, 7, 9, 11, 14, 12)
+    println("Original list:")
+    println(nums)
+    //As scala List is immutable, so we can’t delete elements from it, but
+    //filter out element(s) as per requirement.
+    println("Filter out 3 from the above list:")
+    val num1 = nums.filter(_ != 3)
+    println(num1)
+
+    println("Filter out numbers which are greater than 10:")
+    val nums2 = nums.filter(_ > 10)
+    println(nums2)
+  }
+}
+
+//Write a Scala program to iterate over a list to print the elements and calculate the sum and product of all elements of this list.
+object scala_list5 {
+  def main(args: Array[String]): Unit = {
+
+    val num = List(1,2,3,4,5,6)
+    for (i <- num)
+    { println(i)}
+
+    val result = num.sum
+    println(result)
+
+    val result1 = num.product
+    println(result1)
+  }
+}
+
+//Write a Scala program to find the largest and smallest number from a given list.
+//  Solution : List.max and List.Min functions will be used.
+
+//Write a Scala program to remove duplicates from a given list.
+// Solution :  val result2 = chars.distinct or val result1 = nums.distinct
+
+//Write a Scala program to check a given list is empty or not.
+// Solution : val result1 = nums1.isEmpty   so output will be true or false
+
+//Write a Scala program to get the difference between two given lists.
+object Scala_List6
+{
+  def main(args: Array[String]): Unit =
+  {
+    val list1 = List("Red","Blue","Blue","Green","Black")
+    val list2 = List("Blue","White")
+    println(list1)
+    println(list2)
+
+    println("list1-list")
+    val temp = list2.toSet
+    val result = list1.filterNot(temp)
+    println(result)
+
+    println("list2-list1")
+    val temp1 = list1.toSet
+    val result1 = list2.filterNot(temp1)
+    println(result1)
+  }
+}
+
+//10. Write a Scala program to find the first and last element of given list.
+// Solution : colors.last & colors.head
+
+
+//Write a Scala program to find the index of an element in a given list.
+// Solution : colors.indexOf("Red") where colors is list name and Red is the element
+
+//Write a Scala program to merge (concatenate) given lists.
+// Solution1 : val nums_1 = nums1 ++ nums2
+// Solution2 : val nums_2 = nums1 ::: nums2
+// Solution3 : val nums_3 = List.concat(nums1, nums2)
+
+//13. Write a Scala program to find the even and odd numbers from a given list.
+object list14{
+  def main(args: Array[String]): Unit = {
+    val num = List(1,2,3,4)
+
+    val evn_num = num.filter(_ % 2 == 0)
+    println(evn_num)
+
+    val odd = num.filter(_ % 2 != 0 )
+    println(odd)
+  }
+}
+
+//14. Write a Scala program to find the nth element of a given list.
+object scala_list15{
+  def nth_num[A](nums: List[A], n: Int) : A =
+  {
+    if (n<0) throw new IllegalArgumentException("position is less than 0")
+    if (n > nums.length) throw new NoSuchElementException("Nth position greater than list")
+      nums(n)
+  }
+
+  def main(args: Array[String]): Unit = {
+    val nums= List(10,20,30,40,50,60,70,80,90,100)
+    println(nums)
+    println("third element:" + nth_num(nums,4))
+    println("fifth element:" + nth_num(nums,5))
+    println("sixth element:" + nth_num(nums,6))
+    println("twenty element:" + nth_num(nums,30)) // This line will throw the exception here
+  }
+}
+
+//15. Write a Scala program to find an element from the last position of a given list.
+object scla_List15{
+  def last_num[A](num : List[A],n : Int) : A=
+  {
+    if (n<0) throw new IllegalArgumentException("Invalid argument")
+    if (n>num.length) throw new NoSuchElementException("Position does not exist")
+    num.takeRight(n).head
+  }
+  def main(args: Array[String]): Unit = {
+    val nums = List(1, 2, 3, 4, 5, 7, 9, 11, 14, 12, 16)
+    println("Result: " + last_num(nums, 3));
+    println("Result: " + last_num(nums, 6));
+    println("Result: " + last_num(nums, 0));
+  }
+}
+
+//16.Write a Scala program to reverse a given list.
+
+object scala_list16{
+  def main(args: Array[String]): Unit = {
+    val num = List(1,2,3,4,5,6,7,8,9,10)
+    println(num)
+    //First way is reverse function
+    println(num.reverse)
+    // Using FOR loop
+    for (n<-num.reverse)
+      {
+        println(n)
+      }
+  }
+}
+
+//17. Write a Scala program to check a given list is a palindrome or not.
+object Scala_List17 {
+
+  def is_Palindrome[A](list_nums: List[A]):Boolean = {
+    list_nums == list_nums.reverse
+  }
+
+  def main(args: Array[String]): Unit = {
+    println("Result: " + is_Palindrome(List(1,2,3,4,3,2,1)));
+    println("Result: " + is_Palindrome(List(1,2,3)));
+  }
+}
+
+//Write a Scala program to flatten a given List of Lists, nested list structure.
+object Scala_List18 {
+
+  def flat_List(ls: List[_]): List[Any] = ls match {
+    case Nil => Nil
+    case (head: List[_]) :: tail => flat_List(head) ::: flat_List(tail)
+    case head :: tail => head :: flat_List(tail)
+  }
+
+  def main(args: Array[String]): Unit = {
+    val all_lists1 = List(List(1,3,5,7), List(2,4,6,8), List(31,32,33,34))
+    println("Original List:")
+    println(all_lists1)
+    val flatten_list1 = flat_List(all_lists1)
+    println("Flatten list:")
+    println(flatten_list1)
+    val all_lists2 = List(1, List(2, 3, 4), List(List(List(5, 6, 7))), List(8, 9), List(10), 11)
+    println("Original List:")
+    println(all_lists2)
+    val flatten_lists2 = flat_List(all_lists2)
+    println("Flatten list:")
+    println(flatten_lists2)
+  }
+}
+
+//21.Write a Scala program to check whether a list contains a sublist.
+object Scala_List21 {
+  def test_sublist[A](list1:List[A], list2:List[A]):Boolean = {
+    list1.forall(list2.contains)              // Applying forall method  val result = m1.forall(y => {y % 3 == 0})
+  }
+  def main(args: Array[String]): Unit = {
+    println(test_sublist(List(1,2), List(1,2,3,4)))
+    println(test_sublist(List(1,2), List(1,3,4,2)))
+    println(test_sublist(List(1,2), List(1,3,4)))
+  }
+}
+
+// Creating a list - //val m1 = List(1, 3, 5, 2)  - // Applying contains method - //val res = m1.contains(1)
+
+//Write a Scala program to count the number of occurrences of each element in a given list.
+object Scala_List22 {
+
+  //groupBy(f) returns A map of collections created by the function f
+  def list_elemnt_occurrences[A](list1:List[A]): Map[A, Int] =
+  {
+    list1.groupBy(el => el).map(e => (e._1, e._2.length))
+  }
+
+  def main(args: Array[String]): Unit = {
+    println(list_elemnt_occurrences(List(1,1,1,2,2,3,6,4,4,6,1,6,2)))
+    println(list_elemnt_occurrences(List("Red", "Green", "White", "Black", "Red", "Green", "Black")))
+  }
+}
+
+//Write a Scala program to split a given list into two lists.
+object Scala_List23 {
+  def split_list[A](nums: List[A], n: Int): (List[A], List[A]) = {
+    (nums.take(n), nums.drop(n))
+  }
+
+  def main(args: Array[String]): Unit = {
+    val nums1 = List(1,2,3,4,5,6)
+
+    println(split_list(nums1, 2))
+    println(split_list(nums1, 3))
+  }
+}
+
+//24. Write a Scala program to calculate the length of a given list.
+object Scala_List24 {
+  def length[A](nums:List[A]):Int = {
+    nums.length
+  }
+  def main(args: Array[String]): Unit = {
+    val nums1 = List(1,2,3,4)
+    println(length(nums1))
+
+    val nums2 = List(1, List(2, 3, 4), List(List(List(5, 6, 7))), List(8, 9), List(10), 11)
+    println(nums2)
+    println(length(nums2))
+
+    val colors = List("Red", "Green", "Black", "Pink", "Orange", "White","Yellow")
+    println(colors)
+    println(length(colors))
+  }
+}
